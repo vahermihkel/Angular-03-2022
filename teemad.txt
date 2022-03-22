@@ -1,0 +1,72 @@
+1. Endast
+
+2. Teist -- lühitutvustus
+a) varasem programmeerimise kogemus - koolitustega
+b) pikaajaline eesmärk IT-s
+c) vahetult pärast koolituse ootus
+
+3. Koolitusest
+
+70ak/h - 4ak/h (45min)  -> T 3 astronoomilist  9.00-12.15  (10.30-10.45)
+			-> R 8.30-11.35
+
+veebipood -> eesti keelsete muutujate ja eesti keelsete funktsioonide
+webshop -> põhiprojektiks inglise keeles
+
+eksam/iseseisev projekt kohustuslik - kohustuslikku ei ole
+15 teemat 
+
+4. Tehnoloogiatest
+Tööle võetakse: 
+Angular - ecoop, stebby
+React - Telia
+Vue - Delfi, Selver
+
+React - tööpakkumisi kõige rohkem - ettevõtetes kasutatakse rohkem -> oskajaid kõige rohkem
+70 - 30 - 5
+55 - 50 - 5
+
+JavaScript, mida kasutame Angulari sees
+JavaScript, mille sees on ka tüübid
+
+5. Seadistamised
+
+command prompt - käsuviip
+command line - käsurida
+CLI - command line interface
+/ npm
+/ ng
+/ git
+
+git -- võimaldab koodi üles pilve üles panna
+
+Github - koodihoidla
+Gitlab - koodihoidla
+Bitbucket - koodihoidla
+
+6. Kood üles Github
+
+cd - change directory
+koolitused xxxxxxxx
+cd koolitused
+cd ..
+
+mkdir Angular-03-2022-1
+exporeris -> new folder -> Angular-03-2022-1
+
+cmd kaudu üles pannes:
+git config --global user.name "vahermihkel"
+git config --global user.email "vahermihkel@gmail.com"
+-> new file "README.md" kausta Angular-03-2022-1
+
+PROJEKTI TEGEMINE:
+mine õigesse kausta ---> Angular-03-2022
+ng new veebipood
+routing: yes
+stylesheet: css
+
+git add .   <--- lisan kõik failid (git add README.md)
+git commit -m "uus angulari projekt" <-- annan sõnumi
+git push    <---- uploadin Githubi
+
+7. Koodi kirjutada
