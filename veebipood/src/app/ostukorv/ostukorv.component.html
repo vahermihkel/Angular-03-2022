@@ -1,1 +1,37 @@
-<p>ostukorv works!</p>
+<div *ngIf="boolean === true" >{{ string }}</div>
+<div *ngIf="number >= 100" >{{ number }}</div>
+<div>{{ boolean }}</div>
+
+<div>{{ string + string }}</div>
+<div>{{ number + number }}</div>
+<div>{{ boolean + string }}</div>
+
+<div *ngIf="string.length > 0">SEDA NÄITAN KUI STRING EI OLE TÜHI</div>
+
+<button (click)="korrutaKahega()">Korruta number kahega</button>
+
+<button (click)="muudaBoolean()">Muuda boolean false-ks</button>
+
+<button (click)="tyhjendaString()">Muuda string tühjaks</button>
+
+<button (click)="muudaBoolean2()">Muuda boolean</button>
+
+
+<!-- tumesinine - tag (button, div, img, span)
+    helesinine - muutujad, tagi vasakpoolne atribuut (class, click, src)
+    kollane - funktsioonid
+    valge - mida näidatakse kasutajale brauseris välja
+-->
+
+<!-- 
+KUI html-s soovin muutujaid välja näidata
+siis need peavad olema SAMA componendi
+.ts failis olemas
+
+muidu on punane joon muutuja all
+{{  }} - string interpolation
+
+genereerige:    div 
+alt gr + 7:   {}
+alt gr + 0:   }
+-->

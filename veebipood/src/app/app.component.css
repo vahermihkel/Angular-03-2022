@@ -1,0 +1,10 @@
+.text {
+    margin-left: 10%;
+    width: 50%;
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+.bold {
+    font-weight: bold;
+}
