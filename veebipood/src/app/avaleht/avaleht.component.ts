@@ -10,7 +10,11 @@ export class AvalehtComponent implements OnInit { // export - saaks importida
   // AvalehtComponent - class nimetus
   // implement OnInit - ei lase ngOnInit funktsiooni kustutada
 
-  constructor() { 
+  // massiiv / list / array
+              // 5st elemendist
+  tooted = ["Coca cola", "Fanta", "Sprite", "Vichy", "Vitamin well"];
+
+  constructor() {
     console.log("pannakse Avaleht constructor käima");
   } // constructor erinevate failide sidumiseks
 

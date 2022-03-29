@@ -1,4 +1,16 @@
-<div *ngIf="boolean === true" >{{ string }}</div>
+<button *ngIf="ostukorviTooted.length > 0" (click)="tyhjendaTooted()">Tühjenda</button>
+<div *ngIf="ostukorviTooted.length >= 2">Ostukorvis on {{ ostukorviTooted.length }} eset</div>
+<div *ngIf="ostukorviTooted.length === 1">Ostukorvis on {{ ostukorviTooted.length }} ese</div>
+
+<div *ngIf="ostukorviTooted.length === 0">Ostukorv on tühi</div>
+
+<div *ngFor="let t of ostukorviTooted">
+    <span>Toode: {{ t }}</span>
+    <button (click)="kustutaToode(t)">x</button>
+    <button (click)="lisaToode(t)">+</button>
+</div>
+
+<!-- <div *ngIf="boolean === true" >{{ string }}</div>
 <div *ngIf="number >= 100" >{{ number }}</div>
 <div>{{ boolean }}</div>
 
@@ -14,7 +26,7 @@
 
 <button (click)="tyhjendaString()">Muuda string tühjaks</button>
 
-<button (click)="muudaBoolean2()">Muuda boolean</button>
+<button (click)="muudaBoolean2()">Muuda boolean</button> -->
 
 
 <!-- tumesinine - tag (button, div, img, span)
@@ -33,5 +45,4 @@ muidu on punane joon muutuja all
 
 genereerige:    div 
 alt gr + 7:   {}
-alt gr + 0:   }
--->
+alt gr + 0:   } -->
