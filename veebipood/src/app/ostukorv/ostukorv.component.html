@@ -11,7 +11,7 @@
     <button (click)="lisaToode(t)">+</button>
 </div>
 
-<div>Kokku: {{ koguSumma }} €</div>
+<div *ngIf="ostukorviTooted.length > 0">Kokku: {{ koguSumma }} €</div>
 
 <!-- <div *ngIf="boolean === true" >{{ string }}</div>
 <div *ngIf="number >= 100" >{{ number }}</div>
