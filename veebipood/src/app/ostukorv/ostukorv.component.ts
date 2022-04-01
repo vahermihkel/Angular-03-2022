@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ostukorv.component.css']
 })
 export class OstukorvComponent implements OnInit {
-  ostukorviTooted = ["Coca cola", "Fanta", "Sprite", "Vichy", "Vitamin well", "Kali"];
+  ostukorviTooted: any[] = [];
+  koguSumma = 0;
 
   constructor() { 
     console.log("pannakse Ostukorv constructor käima");
@@ -14,6 +15,11 @@ export class OstukorvComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("pannakse Ostukorv ngOnInit käima");
+    const ostukorvSS = sessionStorage.getItem("ostukorviTooted");
+    if (ostukorvSS !== null) {
+      this.ostukorviTooted = JSON.parse(ostukorvSS);
+    }
+    this.arvutaKogusumma();
   }
 
   // UUE MUUTUJA TEKITAMINE (uus väärtus ja sellele viitav sõna)
@@ -36,8 +42,9 @@ export class OstukorvComponent implements OnInit {
     // ostukorviTooted.splice(2,1);
     const j2rjekorraNumber = this.ostukorviTooted.indexOf(toode);
     this.ostukorviTooted.splice(j2rjekorraNumber,1);
-
+    sessionStorage.setItem("ostukorviTooted", JSON.stringify(this.ostukorviTooted));
     // EI OLE SELLIST ASJA NAGU .remove() või .delete()
+    this.arvutaKogusumma();
   }
 
   lisaToode(toode: any) {
@@ -46,11 +53,26 @@ export class OstukorvComponent implements OnInit {
     // ["Coca cola", "Fanta", "Sprite", "Vichy", "Vitamin well", "Kali"]
     // "Sprite"   -> ["Coca cola", "Fanta", "Sprite", "Vichy", "Vitamin well", "Kali", "Sprite"]
     this.ostukorviTooted.push(toode);
+    sessionStorage.setItem("ostukorviTooted", JSON.stringify(this.ostukorviTooted));
+    this.arvutaKogusumma();
   }
 
   tyhjendaTooted() {
     this.ostukorviTooted = [];
+    sessionStorage.setItem("ostukorviTooted", JSON.stringify(this.ostukorviTooted));
+    this.arvutaKogusumma(); // funktsioone saan ka kasutusele võtta this. abil
   }
+
+  private arvutaKogusumma() {
+    this.koguSumma = 0;
+    // [{n:'cc', hind: 2}, {n:'fa', hind: 4}, {n:'sp', hind: 3}].forEach()
+    // {n:'cc', hind: 2} =>   2   =  0 + 2  
+    // {n:'fa', hind: 4} =>   6   =  2 + 4 
+    // {n:'sp', hind: 3} =>   9   =  6 + 3   
+    this.ostukorviTooted.forEach(element => this.koguSumma = this.koguSumma + element.hind);
+    // tsükli - võtta kõigi toodete küljest hind ja liita see koguSummale juurde
+  }
+
   // SALVESTAMINE:
   // 1. Andmebaas
   // 2. Brauseri mälu

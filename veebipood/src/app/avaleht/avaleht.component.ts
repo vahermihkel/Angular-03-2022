@@ -12,7 +12,13 @@ export class AvalehtComponent implements OnInit { // export - saaks importida
 
   // massiiv / list / array
               // 5st elemendist
-  tooted = ["Coca cola", "Fanta", "Sprite", "Vichy", "Vitamin well"];
+  tooted = [
+    {nimi: "Coca cola", hind: 2, aktiivne: true},
+    {nimi: "Fanta", hind: 3, aktiivne: true}, 
+    {nimi: "Sprite", hind: 2.5, aktiivne: true}, 
+    {nimi: "Vichy", hind: 4, aktiivne: true}, 
+    {nimi: "Vitamin well", hind: 6, aktiivne: true}
+  ];
 
   constructor() {
     console.log("pannakse Avaleht constructor käima");
@@ -23,4 +29,36 @@ export class AvalehtComponent implements OnInit { // export - saaks importida
     // parem klõps lehel (brauseris) -> inspect -> console tab
   }
 
+            // 1.{n: "C", h: 2}
+            // 2.{n: "F", h: 3}
+  lisaOstukorvi(toode: any) {
+        // 1.const ostukorvSS = null;
+        // 2.const ostukorvSS = "[{n: "C", h: 2}]"
+    const ostukorvSS = sessionStorage.getItem("ostukorviTooted");
+    let ostukorv = [];
+    if (ostukorvSS !== null) { // null - tühjus      !==  ei võrdu
+      // 2.       = JSON.parse("[{n: "C", h: 2}]") -> [{n: "C", h: 2}]
+      // 2. ostukorv = [{n: "C", h: 2}];
+      ostukorv = JSON.parse(ostukorvSS);
+    }
+    // 1. [].push({n: "C", h: 2})  --> [{n: "C", h: 2}]
+    // 2. [{n: "C", h: 2}].push({n: "F", h: 3}) -> [{n: "C", h: 2},{n: "F", h: 3}]
+    ostukorv.push(toode);
+    //1. Key="ostukorviTooted"  Value=[{n: "C", h: 2}] Object object
+    //1. JSON.stringify   [{n: "C", h: 2}] ->  "[{n: "C", h: 2}]"
+    //2. [{n: "C", h: 2},{n: "F", h: 3}]   --> JSON.stringify()
+    // 2. "[{n: "C", h: 2},{n: "F", h: 3}]"
+    sessionStorage.setItem("ostukorviTooted", JSON.stringify(ostukorv));
+  }
+
+  // salvestamine:
+  // 1. andmebaas - kasutajad, tellimused, tooted
+  // 2. brauserisse - ostukorvi sisu, veebilehe seaded
+  // 3. faili
+
+  // kirjaviis on arendajate kokkulepe
+  // camelCase - muutujad ja funktsioonid
+  // PascalCase - klassid
+  // snake_case -
+  // kebab-case
 }

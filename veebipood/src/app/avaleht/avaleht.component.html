@@ -1,6 +1,11 @@
-<div *ngFor="let nimi of tooted">
-  <div>Nimi: {{ nimi }}</div>
-  <div>Hind: 3</div>
+<!-- tooted = [.1.,.2.,.3.]
+t = .1. "Coca cola" --- {nimi: "Coca cola", hind: 3}
+t = .2. "Fanta" --- {nimi: "Fanta", hind: 3}
+t = .3. "Sprite" -- {nimi: "Sprite", hind: 2.5}
+-->
+<div *ngFor="let t of tooted">
+  <div>Nimi: {{ t.nimi }}</div>
+  <div>Hind: {{ t.hind }} </div>
   <div>Kategooria: coca</div>
-  <button>Lisa {{ nimi }} ostukorvi</button>
+  <button (click)="lisaOstukorvi(t)">Lisa {{ t.nimi }} ostukorvi</button>
 </div>

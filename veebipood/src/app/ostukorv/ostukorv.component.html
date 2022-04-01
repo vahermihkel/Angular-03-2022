@@ -5,10 +5,13 @@
 <div *ngIf="ostukorviTooted.length === 0">Ostukorv on tühi</div>
 
 <div *ngFor="let t of ostukorviTooted">
-    <span>Toode: {{ t }}</span>
+    <span>Toode: {{ t.nimi }}</span>
+    <span> - {{ t.hind }} €</span>
     <button (click)="kustutaToode(t)">x</button>
     <button (click)="lisaToode(t)">+</button>
 </div>
+
+<div>Kokku: {{ koguSumma }} €</div>
 
 <!-- <div *ngIf="boolean === true" >{{ string }}</div>
 <div *ngIf="number >= 100" >{{ number }}</div>
