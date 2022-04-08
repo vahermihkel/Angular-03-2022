@@ -25,8 +25,10 @@ export class AvalehtComponent implements OnInit { // export - saaks importida
   } // constructor erinevate failide sidumiseks
 
   ngOnInit(): void { // käimaminemise funktsioon
-    console.log("pannakse Avaleht ngOnInit käima");
-    // parem klõps lehel (brauseris) -> inspect -> console tab
+    const tootedLS = localStorage.getItem("tooted");
+    if (tootedLS) { // tootedLS !== null
+      this.tooted = JSON.parse(tootedLS);
+    }
   }
 
             // 1.{n: "C", h: 2}

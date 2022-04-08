@@ -17,11 +17,22 @@ export class VaataTooteidComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const tootedLS = localStorage.getItem("tooted");
+    if (tootedLS) { // tootedLS !== null
+      this.tooted = JSON.parse(tootedLS);
+    }
   }
 
   kustutaToode(toode: any) {
+    console.log(toode); // toodet ei saadetud korralikult - HTML-s on korrektne
     const j2rjekorraNumber = this.tooted.indexOf(toode);
+    console.log(j2rjekorraNumber); // indexit ei suudetud korralikult leida
     this.tooted.splice(j2rjekorraNumber, 1);
+    console.log(this.tooted); // ei suudetud kustutada
+    localStorage.setItem("tooted", JSON.stringify(this.tooted));
+    // minna localStorage-sse ja kas muutus
+
+    // 10:10
   }
 
 }
