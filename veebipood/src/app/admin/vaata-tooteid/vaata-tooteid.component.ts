@@ -31,8 +31,6 @@ export class VaataTooteidComponent implements OnInit {
     console.log(this.tooted); // ei suudetud kustutada
     localStorage.setItem("tooted", JSON.stringify(this.tooted));
     // minna localStorage-sse ja kas muutus
-
-    // 10:10
   }
 
 }
