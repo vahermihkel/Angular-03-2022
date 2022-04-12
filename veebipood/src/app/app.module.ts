@@ -11,6 +11,7 @@ import { VaataTooteidComponent } from './admin/vaata-tooteid/vaata-tooteid.compo
 import { AdminKoduComponent } from './admin/admin-kodu/admin-kodu.component';
 import { FormsModule } from '@angular/forms';
 import { YksikToodeComponent } from './yksik-toode/yksik-toode.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { YksikToodeComponent } from './yksik-toode/yksik-toode.component';
     // HTMLi jaoks olevad impordid
     BrowserModule, // *ngFor, *ngIf
     AppRoutingModule, // routerLink=""
-    FormsModule // ngForm
+    FormsModule, // ngForm
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

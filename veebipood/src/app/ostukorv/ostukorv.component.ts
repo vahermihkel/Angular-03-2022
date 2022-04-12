@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,9 +10,10 @@ export class OstukorvComponent implements OnInit {
   ostukorviTooted: any[] = [];
   koguSumma = 0;
 
-  constructor() { 
-    console.log("pannakse Ostukorv constructor käima");
-  }
+  // klasside (erinevate node_module võimaluste) 
+  //    Angulari koodilõikude
+  //    ühendamine selle component külge
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     console.log("pannakse Ostukorv ngOnInit käima");
@@ -77,6 +79,30 @@ export class OstukorvComponent implements OnInit {
   // 1. Andmebaas
   // 2. Brauseri mälu
   // 3. Faili kirjutamine
+
+  maksma() {
+    const makseAndmed = {
+      "api_username": "92ddcfab96e34a5f",
+      "account_name": "EUR3D1",
+      "amount": this.koguSumma,
+      "order_reference": Math.random() * 999999,
+      "nonce": "a9b7f7e79" + new Date() + Math.random() * 999999,
+      "timestamp": new Date(),
+      "customer_url": "https://angular-03-2022.web.app"
+    }
+    const headers = {
+      headers: new HttpHeaders(
+        {
+          "Authorization": 
+          "Basic OTJkZGNmYWI5NmUzNGE1Zjo4Y2QxOWU5OWU5YzJjMjA4ZWU1NjNhYmY3ZDBlNGRhZA=="
+        }
+      )
+    };
+    this.http.post<any>("https://igw-demo.every-pay.com/api/v4/payments/oneoff",
+      makseAndmed,
+      headers).subscribe(tagastus => location.href = tagastus.payment_link);
+
+  }
 
 }
 

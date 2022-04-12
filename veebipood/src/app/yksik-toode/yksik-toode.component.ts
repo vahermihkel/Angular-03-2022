@@ -22,7 +22,7 @@ export class YksikToodeComponent implements OnInit {
 
       this.toode = tooted.find(element => 
         element.nimi.replaceAll(" ", "-").toLowerCase() === toodeNimi);
-        console.log(this.toode);
+        console.log(this.toode); // undefined
     }
     
     // hind / aktiivne

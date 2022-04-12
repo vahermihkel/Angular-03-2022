@@ -27,9 +27,9 @@ const routes: Routes = [
 // Muutmine (lisamisest ja üksikust vaatamisest)
 // Maksmine - API päring EveryPay
 
-// R
+// N
 // andmebaas - API päring
-// (R/T)
+// (N/T)
 // UUS ingl. projekt
 // tõlked
 // bootstrap
