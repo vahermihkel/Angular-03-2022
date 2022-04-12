@@ -101,7 +101,6 @@ export class OstukorvComponent implements OnInit {
     this.http.post<any>("https://igw-demo.every-pay.com/api/v4/payments/oneoff",
       makseAndmed,
       headers).subscribe(tagastus => location.href = tagastus.payment_link);
-
   }
 
 }

@@ -1,1 +1,22 @@
 <button routerLink="/admin/tooted">Tagasi</button>
+
+
+<!-- <div>{{ toode.nimi }}</div>
+<div>{{ toode.hind }}</div>
+<div>{{ toode.aktiivne }}</div> -->
+                        <!-- vasakul property binding: []
+                        paremal muutuja .ts seest -->
+<form (ngSubmit)="muudaToode()" [formGroup]="muutmiseVorm">
+  <label>Nimi</label> <br>
+  <input formControlName="nimi" type="text"> <br>
+  <label>Hind</label> <br>
+  <input formControlName="hind" type="number"> <br>
+  <label>Aktiivne</label> <br>
+  <input formControlName="aktiivne" type="checkbox"> <br>
+  <button>Muuda</button>
+  <!-- formControlName="võti"
+    new FormGroup({
+      võti: new FormControl(väärtus-mida-süstin)
+    })
+  -->
+</form>
