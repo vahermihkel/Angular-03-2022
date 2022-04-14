@@ -6,10 +6,13 @@
 <div>{{ toode.aktiivne }}</div> -->
                         <!-- vasakul property binding: []
                         paremal muutuja .ts seest -->
-<form (ngSubmit)="muudaToode()" [formGroup]="muutmiseVorm">
+
+<div *ngIf="!toode">LOADING....</div>
+
+<form *ngIf="toode" (ngSubmit)="muudaToode()" [formGroup]="muutmiseVorm">
   <label>Nimi</label> <br>
   <input formControlName="nimi" type="text"> <br>
-  <label>Hind</label> <br>
+  <label>Hind</label> <button type="button">Lisainfo</button> <br>
   <input formControlName="hind" type="number"> <br>
   <label>Aktiivne</label> <br>
   <input formControlName="aktiivne" type="checkbox"> <br>
