@@ -1,7 +1,13 @@
-<p>home works!</p>
 
 <!-- <button class="btn btn-primary">SININE</button>
 <button class="btn btn-success">ROHELINE</button>
 <button class="btn btn-danger">PUNANE</button>
 <button class="btn btn-warning">KOLLANE</button>
 <button class="btn btn-secondary">HALL</button> -->
+
+<div *ngFor="let product of products">
+    <img src="{{product.imgSrc}}" alt="">
+    <div>{{product.name}}</div>
+    <div>{{product.price}}</div>
+    <button (click)="onAddToCart(product)">Lisa {{product.name}} ostukorvi</button>
+</div>
