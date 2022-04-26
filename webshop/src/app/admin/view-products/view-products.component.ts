@@ -23,12 +23,14 @@ export class ViewProductsComponent implements OnInit {
 }
 
 /* KODUS: 
-* Eelmises mõnes projektis kogustega kokkuarvutus
+* (Eelmises mõnes projektis kogustega kokkuarvutus)
 
-* Ostukorvi kogusumma (cart)
-* Maksmine (cart)
 * Muutmine (juba alustatud)
 * Lisamine (! 7tk)
+* Ostukorvi kogusumma (cart)
+* Maksmine (cart)
+* Kustutamine
+* Üksiku toote vaatamine
 
 TEEME JÄRGMISENA:
 R
@@ -57,6 +59,9 @@ R
 * emailide saatmine
 * pakiautomaadid ostukorvi
 
+* Id kontroll - iga klahvivajutusega läheb kontrollima kas selline ID on olemas
+   nii muutmisel kui lisamisel
+* Admin vaates otsinguväli - iga klahvivajutusega filtreerib tooted
 * ?? piltide üleslaadimine Firebase-i (Firebase Storage)
 
 
