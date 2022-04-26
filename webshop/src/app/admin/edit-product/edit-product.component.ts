@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EditProductComponent implements OnInit {
   products: any[] = [];
   dbUrl = "https://webshop-03-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  product: any;
 
   constructor(private route: ActivatedRoute,
     private http: HttpClient) { }
@@ -29,6 +30,10 @@ export class EditProductComponent implements OnInit {
       }
       console.log("siia jõuan hiljem kuigi on üleval pool")
       console.log(this.products);
+      // SIIN PEAN .FIND TEGEMA
+      this.product = this.products.find(element => Number(element.id) === Number(productId));
+      // SIIN PEAN FORMSGROUP LOOMA -- ! kõigele import FormsGroup, FormsControl
+          // ({id: new FormsControl})    7tk  - vasakul pool sama nimetusega nagu HTML-s
     }); 
     // this.products.find()
     console.log("siia jõuan varem kuigi on allpool")
