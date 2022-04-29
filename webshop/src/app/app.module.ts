@@ -15,6 +15,9 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
 import { ViewProductsComponent } from './admin/view-products/view-products.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ThousandSeparatorPipe } from './pipes/thousand-separator.pipe';
+import { DescriptionShortenerPipe } from './pipes/description-shortener.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     AddProductComponent,
     EditProductComponent,
     ViewProductsComponent,
-    NavbarComponent
+    NavbarComponent,
+    ThousandSeparatorPipe,
+    DescriptionShortenerPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { NavbarComponent } from './navbar/navbar.component';
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

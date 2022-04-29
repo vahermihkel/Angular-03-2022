@@ -5,9 +5,34 @@
 <button class="btn btn-warning">KOLLANE</button>
 <button class="btn btn-secondary">HALL</button> -->
 
+
+<!-- <div>{{ kuup2ev | date }}</div>
+<div>{{ protsent | percent }}</div>
+<div>{{ rahayhik | currency }}</div>
+<div>{{ lause | uppercase | translate }}</div>  -->
+<!--tõlkevõti: "vitamin well without sugar"
+VITAMIN WELL WITHOUT SUGAR -->
+<!-- <div><b>{{ lause | titlecase }}</b></div>
+
+<div>{{ protsent * 100 + "%" }}</div>
+<div>{{ kuup2ev | date:'shortTime' }}</div>
+<div>{{ kuup2ev | date:'mediumTime' }}</div>
+<div>{{ kuup2ev | date:'fullTime' }}</div>
+<div>{{ kuup2ev | date:'fullDate' }}</div>
+<div>{{ rahayhik | currency:"EUR" }}</div> -->
+
+<!-- 1.  | translate
+    2.  | uppercase - lowercase - titlecase
+    3.  | date -->
+
+<button (click)="onSortAZ()">Sorteeri A-Z</button>
+<button (click)="onSortZA()">Sorteeri Z-A</button>
+<button (click)="onSortPriceAsc()">Sorteeri hind kasvavalt</button>
+<button (click)="onSortPriceDesc()">Sorteeri hind kahanevalt</button>
+
 <div *ngFor="let product of products">
     <img src="{{product.imgSrc}}" alt="">
     <div>{{product.name}}</div>
-    <div>{{product.price}}</div>
+    <div>{{product.price | thousandSeparator }}</div>
     <button (click)="onAddToCart(product)">Lisa {{product.name}} ostukorvi</button>
 </div>
