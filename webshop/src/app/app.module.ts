@@ -18,6 +18,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ThousandSeparatorPipe } from './pipes/thousand-separator.pipe';
 import { DescriptionShortenerPipe } from './pipes/description-shortener.pipe';
 import { FormsModule } from '@angular/forms';
+import { ShopsComponent } from './shops/shops.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     ViewProductsComponent,
     NavbarComponent,
     ThousandSeparatorPipe,
-    DescriptionShortenerPipe
+    DescriptionShortenerPipe,
+    ShopsComponent
   ],
   imports: [
     BrowserModule,

@@ -38,15 +38,20 @@ TEEME JÄRGMISENA:
 R
 * ostukorvi kujundus -- CSS
 * sorteerimine
+
+T
 * Karusell-galerii avalehel   Angular Bootstrap
 * Kaardirakendus    Leaflet
 
-T
+R
 * kategooriad andmebaasi
 * Muutmisel saab võtta dropdownist kategooriaid
 * Lisamisel saab võtta dropdownist kategooriaid
+* Shops andmebaasi
 
-R + T
+// KOJU: Karusell-galerii pildid andmebaasi URL-na https://picsum.photos/
+
+T+R
 * Sisselogimine/Registreerumine (saadan failid e-mailile 5 faili)
         administraatorile
 * URL peitmine (/admin ei saa)
@@ -55,11 +60,14 @@ R + T
 * sisselogitud kasutajal on aktiivsetel toodetel roheline piir ümber,
   mitteaktiivsetel punane
 
-R
+T
 * filtreerimine - vajutan mingi kindla kategooria peale ja näidatakse vaid
       seda kategooriat
 * emailide saatmine
 * pakiautomaadid ostukorvi
+
+R
+Observables
 
 * Id kontroll - iga klahvivajutusega läheb kontrollima kas selline ID on olemas
    nii muutmisel kui lisamisel

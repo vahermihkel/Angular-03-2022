@@ -9,13 +9,25 @@ import { Product } from '../models/product.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/300`);
+  images = [
+    "https://picsum.photos/id/312/900/300",
+    "https://picsum.photos/id/944/900/300",
+    "https://picsum.photos/id/1011/900/300",
+    "https://picsum.photos/id/931/900/300"
+  ];
+
+  // 1. *ngFor
+  // 2. objektid {url: "https://", header: "", text: "", alt: ""}
+  // 3. HTML-s src={{image.url}}
+
   products: Product[] = [];
   dbUrl = "https://webshop-03-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
   
-  kuup2ev = new Date();
-  protsent = 0.5;
-  rahayhik = 1000000;
-  lause = "vitamin well without sugar";
+  // kuup2ev = new Date();
+  // protsent = 0.5;
+  // rahayhik = 1000000;
+  // lause = "vitamin well without sugar";
 
   constructor(private http: HttpClient) { }
 
