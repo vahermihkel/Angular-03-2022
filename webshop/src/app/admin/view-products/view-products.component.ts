@@ -47,7 +47,10 @@ R
 * kategooriad andmebaasi
 * Muutmisel saab võtta dropdownist kategooriaid
 * Lisamisel saab võtta dropdownist kategooriaid
-* Shops andmebaasi
+* Services
+
+* Shops andmebaasi --- print-screenidena
+* Karusell-galerii pildid andmebaasi --- iseseisvalt
 
 // KOJU: Karusell-galerii pildid andmebaasi URL-na https://picsum.photos/
 
