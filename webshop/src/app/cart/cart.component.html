@@ -1,12 +1,27 @@
 <div class="cart-item" *ngFor="let cartProduct of cartProducts">
     <img class="cart-item-pic" src="{{cartProduct.product.imgSrc}}" alt="">
     <div class="cart-item-name">{{ cartProduct.product.name }}</div>
-    <div class="cart-item-price">{{ cartProduct.product.price | thousandSeparator }} €</div>
+    <div class="cart-item-price">{{ cartProduct.product.price | thousandSeparator }}</div>
     <div>
-        <img class="cart-button" (click)="onDecreaseQuantity(cartProduct)" src="assets/cart/minus.png" />
+        <img *ngIf="cartProduct.product.id !== 11110000" class="cart-button" (click)="onDecreaseQuantity(cartProduct)" src="assets/cart/minus.png" />
         <span class="cart-item-quantity">{{ cartProduct.quantity }} tk</span>
-        <img class="cart-button" (click)="onIncreaseQuantity(cartProduct)" src="assets/cart/plus.png" />
+        <img *ngIf="cartProduct.product.id !== 11110000" class="cart-button" (click)="onIncreaseQuantity(cartProduct)" src="assets/cart/plus.png" />
     </div>
-    <div class="cart-item-total">{{ (cartProduct.product.price * cartProduct.quantity) | thousandSeparator }} €</div>
-    <img class="cart-button" (click)="onRemoveProduct(cartProduct)" src="assets/cart/delete.png" />
+    <div class="cart-item-total">{{ (cartProduct.product.price * cartProduct.quantity) | thousandSeparator }}</div>
+    <img *ngIf="cartProduct.product.id !== 11110000" class="cart-button" (click)="onRemoveProduct(cartProduct)" src="assets/cart/delete.png" />
+</div>
+
+<!-- [(ngModel)] ---- seob otse .ts muutujaga mida valiti ära -->
+<select 
+    [(ngModel)]="selectedParcelMachine" 
+    (ngModelChange)="onParcelMachineSelected()"
+    *ngIf="!selectedParcelMachine"
+    >
+    <option value="">Vali pakiautomaat</option>
+    <option *ngFor="let machine of parcelMachines">{{machine.NAME}}</option>
+</select>
+
+<div *ngIf="selectedParcelMachine">
+    <div>Valitud pakiautomaat: {{ selectedParcelMachine }}</div>
+    <button (click)="onUnselectParcelMachine()">X</button>
 </div>

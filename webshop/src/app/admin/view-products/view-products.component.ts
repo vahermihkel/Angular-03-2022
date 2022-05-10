@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/services/product.service';
 export class ViewProductsComponent implements OnInit {
   descriptionWordCount = 5;
   products: Product[] = [];
+  originalProducts: Product[] = [];
+  searchedProduct: string = "";
 
   constructor(private productService: ProductService) { }
 
@@ -17,8 +19,17 @@ export class ViewProductsComponent implements OnInit {
     this.productService.getProductsFromDb().subscribe(response => { 
         for (const key in response) {
           this.products.push(response[key]);
+          this.originalProducts.push(response[key]);
         }
     }); 
+  }
+
+  onFilterProducts() {
+    this.products = this.originalProducts.filter(element => 
+        element.name.toLowerCase().indexOf(this.searchedProduct.toLowerCase()) >= 0 ||
+        element.description.toLowerCase().indexOf(this.searchedProduct.toLowerCase()) >= 0 ||
+        element.id.toString().indexOf(this.searchedProduct.toLowerCase()) >= 0
+        );
   }
 
 }
@@ -53,6 +64,18 @@ R
 
 // KOJU: Karusell-galerii pildid andmebaasi URL-na https://picsum.photos/
 
+T
+* pakiautomaadid ostukorvi
+* Admin vaates otsinguväli - iga klahvivajutusega filtreerib tooted
+* emailide saatmine
+
+R
+* Observables - subject() -- .subscribe(), .next()
+* filtreerimine - vajutan mingi kindla kategooria peale ja näidatakse vaid
+      selle kategooria tooteid
+* Id kontroll - iga klahvivajutusega läheb kontrollima kas selline ID on olemas
+   nii muutmisel kui lisamisel
+
 T+R
 * Sisselogimine/Registreerumine (saadan failid e-mailile 5 faili)
         administraatorile
@@ -62,20 +85,7 @@ T+R
 * sisselogitud kasutajal on aktiivsetel toodetel roheline piir ümber,
   mitteaktiivsetel punane
 
-T
-* filtreerimine - vajutan mingi kindla kategooria peale ja näidatakse vaid
-      seda kategooriat
-* emailide saatmine
-* pakiautomaadid ostukorvi
-
-R
-Observables
-
-* Id kontroll - iga klahvivajutusega läheb kontrollima kas selline ID on olemas
-   nii muutmisel kui lisamisel
-* Admin vaates otsinguväli - iga klahvivajutusega filtreerib tooted
 * ?? piltide üleslaadimine Firebase-i (Firebase Storage)
-
 
  */
 

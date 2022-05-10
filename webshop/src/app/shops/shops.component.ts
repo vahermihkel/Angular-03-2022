@@ -1,4 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+
+declare let Email: any;
+import 'src/assets/smtp.js';
+
 import * as L from 'leaflet';
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -21,13 +26,10 @@ L.Marker.prototype.options.icon = iconDefault;
   styleUrls: ['./shops.component.css']
 })
 export class ShopsComponent implements OnInit, AfterViewInit, OnDestroy  {
-  // kooloni abil näitan tüüpi
-  // võrdusmärgi abil annan väärtuse
-
-  // kui on kohe väärtuse andmine, siis ei pea tüüpi andma,
-  // sest siis tunneb ta ise tüübi väärtuse järgi ära
-
-  // :string, :number, :boolean
+  dbUrl = "https://webshop-03-22-default-rtdb.europe-west1.firebasedatabase.app/shops.json";
+  shops: {shopName: string, 
+    latitude: number, 
+    longitude: number, openTimes: string}[] = [];
 
   private map!: L.Map;
   private lng = 59.4341;
@@ -50,37 +52,71 @@ export class ShopsComponent implements OnInit, AfterViewInit, OnDestroy  {
 
     tiles.addTo(this.map);
 
-    this.marker = L.marker([59.4295, 24.7224]);  
-    this.marker.addTo(this.map);
-    this.marker.bindPopup("<div>Kristiine keskus</div><br><div>Lahtioleku aeg: 9-19</div>");
+    // this.marker = L.marker([59.4295, 24.7224]);  
+    // this.marker.addTo(this.map);
+    // this.marker.bindPopup("<div>Kristiine keskus</div><br><div>Lahtioleku aeg: 9-19</div>");
 
-    this.marker2 = L.marker([59.4246, 24.7928]);  
-    this.marker2.addTo(this.map);
-    this.marker2.bindPopup("<div>Ülemiste keskus</div><br><div>Lahtioleku aeg: 9-20</div>");
+    // this.marker2 = L.marker([59.4246, 24.7928]);  
+    // this.marker2.addTo(this.map);
+    // this.marker2.bindPopup("<div>Ülemiste keskus</div><br><div>Lahtioleku aeg: 9-20</div>");
+    this.shops.forEach(element => {
+        this.marker = L.marker([element.latitude, element.longitude]);  
+        this.marker.addTo(this.map);
+        this.marker.bindPopup("<div>"+element.shopName+
+          "</div><br><div>Lahtioleku aeg: "+
+          element.openTimes+"</div>");
+    })
+
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // lifecycle functions
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    this.initMap();
+    this.http.get<{shopName: string, 
+      latitude: number, 
+      longitude: number, openTimes: string}[]>(this.dbUrl).subscribe(shopsFromDb => {
+      const newArray = [];
+      for (const key in shopsFromDb) {
+        newArray.push(shopsFromDb[key]);
+      }
+      this.shops = newArray;
+      this.initMap();
+    });
   }
 
   onZoomShop(shopName: string) {
-    if (shopName === "kristiine") {
-      this.map.setView(L.latLng([59.4295, 24.7224]),13);
-      this.marker.openPopup();
-    } else if (shopName === "ylemiste") {
-      this.map.setView(L.latLng([59.4246, 24.7928]),13);
-      this.marker2.openPopup();
+    const shopFound = this.shops.find(element => element.shopName === shopName);
+    if (shopFound) {
+      this.map.setView(L.latLng([shopFound.latitude, shopFound.longitude]),13);
+      // this.marker.openPopup(); <- läks vigaseks, ärme kasuta
     } else {
       this.map.setView(L.latLng([59.4341, 24.7489]),11);
-      this.marker.closePopup();
-      this.marker2.closePopup();
+      // this.marker.closePopup(); <- läks vigaseks, ärme kasuta
     }
+  }
+
+  // <input [(ngModel)]="muutuja" type="text" />
+  // <input [(ngModel)]="pealkiri" type="text" />
+
+  muutuja: any;
+  pealkiri: any;
+
+  onSendEmail() {
+    Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "mihkelvaher@hotmail.com",
+        Password : "6A204D40F59AE91015798FCC6894B945DDE7",
+        To : 'mihkelvaher@hotmail.com',
+        From : "vahermihkel@gmail.com",
+        Subject : this.pealkiri,
+        Body : "Klient kirjutas: " +  this.muutuja + " . Saadetud: " + new Date()
+    }).then(
+      (message: any) => alert(message)
+    );
   }
 
   ngOnDestroy() {} // ära minnakse, pannakse funktsioon käima

@@ -8,6 +8,7 @@ import { ViewProductsComponent } from './admin/view-products/view-products.compo
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { ShopsComponent } from './shops/shops.component';
+import { ShopsSettingsComponent } from './admin/shops-settings/shops-settings.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: "admin/muuda/:productId", component: EditProductComponent },
   { path: "admin/halda", component: ViewProductsComponent },
   { path: "admin/kategooriad", component: CategoryComponent },
+  { path: "admin/poodide-seaded", component: ShopsSettingsComponent },
 ];
 
 @NgModule({

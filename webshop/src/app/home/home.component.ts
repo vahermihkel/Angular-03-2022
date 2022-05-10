@@ -63,7 +63,12 @@ export class HomeComponent implements OnInit {
       // cartItems[index].quantity += 2;
       // cartItems[index].quantity = cartItems[index].quantity/2 + 2;
     } else {
-      cartItems.push({ product: productClicked, quantity: 1 });
+      const parcelMachineIndex = cartItems.findIndex(element => element.product.id === 11110000);
+      if (parcelMachineIndex >= 0) {
+        cartItems.splice(parcelMachineIndex,0,{ product: productClicked, quantity: 1 });
+      } else {
+        cartItems.push({ product: productClicked, quantity: 1 });
+      }
     }
 
     // enne kui pushin otsi üles kas sellist toodet juba on ostukorvi esemete hulgas

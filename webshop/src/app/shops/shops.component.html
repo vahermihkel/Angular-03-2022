@@ -1,6 +1,13 @@
 <button (click)="onZoomShop('all')">Kõik poed</button>
-<button (click)="onZoomShop('kristiine')">Kristiine keskus</button>
-<button (click)="onZoomShop('ylemiste')">Ülemiste keskus</button>
+<!-- <button (click)="onZoomShop('kristiine')">Kristiine keskus</button>
+<button (click)="onZoomShop('ylemiste')">Ülemiste keskus</button> -->
+<button 
+  *ngFor="let shop of shops" 
+  (click)="onZoomShop(shop.shopName)">
+    {{shop.shopName}}
+</button>
+
+<button (click)="onSendEmail()">Saada meile e-mail</button>
 
 <div class="map-container">
   <div class="map-frame">
