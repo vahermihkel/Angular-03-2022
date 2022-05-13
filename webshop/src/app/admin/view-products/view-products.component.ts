@@ -70,11 +70,11 @@ T
 * emailide saatmine
 
 R
-* Observables - subject() -- .subscribe(), .next()
-* filtreerimine - vajutan mingi kindla kategooria peale ja näidatakse vaid
-      selle kategooria tooteid
 * Id kontroll - iga klahvivajutusega läheb kontrollima kas selline ID on olemas
    nii muutmisel kui lisamisel
+* filtreerimine - vajutan mingi kindla kategooria peale ja näidatakse vaid
+      selle kategooria tooteid
+* Observables - subject() -- .subscribe(), .next()
 
 T+R
 * Sisselogimine/Registreerumine (saadan failid e-mailile 5 faili)

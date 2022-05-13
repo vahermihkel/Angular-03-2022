@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CartProduct } from '../models/cart-product.model';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,8 @@ export class CartComponent implements OnInit {
   // kuvan HTML-s
   selectedParcelMachine: any;
 
-  constructor(private http: HttpClient) { } // API päringute tegemiseks 
+  constructor(private http: HttpClient,
+    private productService: ProductService) { } // API päringute tegemiseks 
 
   ngOnInit(): void {
     const cartItemsSS = sessionStorage.getItem("cartItems");
@@ -40,11 +42,13 @@ export class CartComponent implements OnInit {
       this.onRemoveProduct(cartProduct);
     }
     sessionStorage.setItem("cartItems", JSON.stringify(this.cartProducts));
+    this.productService.cartChanged.next(true);
   }
 
   onIncreaseQuantity(cartProduct: CartProduct) {
     cartProduct.quantity++;
     sessionStorage.setItem("cartItems", JSON.stringify(this.cartProducts));
+    this.productService.cartChanged.next(true);
   }
 
   onRemoveProduct(cartProduct: CartProduct) {
@@ -52,7 +56,11 @@ export class CartComponent implements OnInit {
     const index = this.cartProducts.findIndex(element => element.product.id === cartProduct.product.id);
     if (index >= 0) {
       this.cartProducts.splice(index,1);
+      if (this.cartProducts.length === 1 && this.cartProducts[0].product.id === 11110000) {
+        this.onUnselectParcelMachine();
+      }
       sessionStorage.setItem("cartItems", JSON.stringify(this.cartProducts));
+      this.productService.cartChanged.next(true);
     }
   }
 
@@ -65,6 +73,7 @@ export class CartComponent implements OnInit {
         quantity: 1
       });
     sessionStorage.setItem("cartItems", JSON.stringify(this.cartProducts));
+    this.productService.cartChanged.next(true);
     this.calculateSumOfCart();
   }
 

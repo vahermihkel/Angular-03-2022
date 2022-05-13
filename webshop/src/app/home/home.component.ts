@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CartProduct } from '../models/cart-product.model';
 import { Product } from '../models/product.model';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-home',
@@ -23,16 +24,19 @@ export class HomeComponent implements OnInit {
 
   products: Product[] = [];
   dbUrl = "https://webshop-03-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
-  
+  categories: string[] = [];
+  selectedCategory = "";
+  originalProducts: Product[] = [];
+
   // kuup2ev = new Date();
   // protsent = 0.5;
   // rahayhik = 1000000;
   // lause = "vitamin well without sugar";
 
-  constructor(private http: HttpClient) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.http.get<Product[]>(this.dbUrl).subscribe(response => {   // .subscribe lubab edasi minna
+    this.productService.getProductsFromDb().subscribe(response => {   // .subscribe lubab edasi minna
         //  {-asdasd: {1}, -aqeqe, {2}}      [{1},{2}]   ---> forin tsükkel   (teeb objekti sees tsükli)
                     // const toode = {nimi: "Coca cola", hind: 3, kategooria: "coca", aktiivne: true}
                     // const newArray = [];
@@ -42,9 +46,28 @@ export class HomeComponent implements OnInit {
         // const newArray = [];
         for (const key in response) {
           this.products.push(response[key]);
+          this.originalProducts.push(response[key]);
         }
         // this.products = newArray;
+        this.categories = this.products.map(element => element.category);
+        this.categories = [...new Set(this.categories)];
     }); 
+  }
+
+  // EI SAA [(ngModel)] kirjutada div sisse
+  // kehtib vaid input sees:
+  // .ts selectedCategory: string = ""
+  // [(ngModel)]="selectedCategory"
+
+  // (click)=onFilterByCategory(category)
+                // (category: string)
+  onFilterByCategory(category: string) {
+    this.selectedCategory = category;
+    if (category === '') {
+      this.products = this.originalProducts;
+    } else {
+      this.products = this.originalProducts.filter(element => element.category === category);
+    }
   }
 
   // [{1},{2},{3},{1},{1},{2},{1}]
@@ -80,6 +103,7 @@ export class HomeComponent implements OnInit {
     // else  index === -1  --->   lisan ostukorvi  .push abil 
 
     sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+    this.productService.cartChanged.next(true);
   }
 
   onSortAZ() {

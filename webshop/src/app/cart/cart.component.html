@@ -15,7 +15,7 @@
 <select 
     [(ngModel)]="selectedParcelMachine" 
     (ngModelChange)="onParcelMachineSelected()"
-    *ngIf="!selectedParcelMachine"
+    *ngIf="!selectedParcelMachine && cartProducts.length > 0"
     >
     <option value="">Vali pakiautomaat</option>
     <option *ngFor="let machine of parcelMachines">{{machine.NAME}}</option>

@@ -56,6 +56,14 @@ VITAMIN WELL WITHOUT SUGAR -->
     2.  | uppercase - lowercase - titlecase
     3.  | date -->
 
+<div (click)="onFilterByCategory('')"
+  [ngClass]="{'category-selected': '' === selectedCategory}">{{"home.all-categories" | translate}}</div>
+
+<div *ngFor="let category of categories"
+  (click)="onFilterByCategory(category)"
+  [ngClass]="{'category-selected': category === selectedCategory}"
+  >{{ category }}</div>
+
 <button (click)="onSortAZ()">Sorteeri A-Z</button>
 <button (click)="onSortZA()">Sorteeri Z-A</button>
 <button (click)="onSortPriceAsc()">Sorteeri hind kasvavalt</button>

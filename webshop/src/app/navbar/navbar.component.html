@@ -7,6 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" routerLink="/admin">{{ "nav.admin-button" | translate }}</a>
+        <div>{{ sumOfCart | thousandSeparator }}</div>
         <a class="nav-link" routerLink="/ostukorv">{{ "nav.cart-button" | translate }}</a>
         <a class="nav-link" routerLink="/poed">Poed</a>
       </div>
