@@ -78,12 +78,25 @@ T+R
 * Sisselogimine/Registreerumine (saadan failid e-mailile 5 faili)
         administraatorile
 * URL peitmine (/admin ei saa)
+------------
+* navbaris nupud vahetuvad kui on sisselogitud
 * avalehel on aktiivsed tooted vaid näha
 * sisselogitud kasutajal on avalehel ka mitteaktiivseid
 * sisselogitud kasutajal on aktiivsetel toodetel roheline piir ümber,
   mitteaktiivsetel punane
 
-* ?? piltide üleslaadimine Firebase-i (Firebase Storage)
+8.45-11.45
+* piltide üleslaadimine Firebase-i (Firebase Storage)
+* PDF-de üleslaadimine
+* toast-id
+* karusell-galerii piltide väljakuvamine
+* ??kujundus
+
+T 
+Proovitöö 2ak/h   9.00-10.30
+
+R  27.05
+Proovitöö 2ak/h   8.45-10.15
 
  */
 

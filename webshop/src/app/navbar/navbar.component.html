@@ -6,12 +6,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" routerLink="/admin">{{ "nav.admin-button" | translate }}</a>
+        <a class="nav-link" *ngIf="loggedIn === true" routerLink="/admin">{{ "nav.admin-button" | translate }}</a>
         <div>{{ sumOfCart | thousandSeparator }}</div>
         <a class="nav-link" routerLink="/ostukorv">{{ "nav.cart-button" | translate }}</a>
         <a class="nav-link" routerLink="/poed">Poed</a>
-        <a class="nav-link" routerLink="/logi-sisse">Logi sisse</a>
-        <a class="nav-link" routerLink="/registreeru">Registreeru</a>
+        <a class="nav-link" *ngIf="loggedIn === false" routerLink="/logi-sisse">Logi sisse</a>
+        <a class="nav-link" *ngIf="!loggedIn" routerLink="/registreeru">Registreeru</a>
+        <a class="nav-link" *ngIf="loggedIn" (click)="onLogout()">Logi välja</a>
       </div>
       <img class="lang" src="assets/uk.png" alt="" (click)="useLanguage('en')">
       <img class="lang" src="assets/estonia.png" alt="" (click)="useLanguage('ee')"> 

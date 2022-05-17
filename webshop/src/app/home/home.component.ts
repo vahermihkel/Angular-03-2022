@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 import { CartProduct } from '../models/cart-product.model';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
@@ -27,13 +28,15 @@ export class HomeComponent implements OnInit {
   categories: string[] = [];
   selectedCategory = "";
   originalProducts: Product[] = [];
+  loggedIn = false;
 
   // kuup2ev = new Date();
   // protsent = 0.5;
   // rahayhik = 1000000;
   // lause = "vitamin well without sugar";
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.productService.getProductsFromDb().subscribe(response => { 
@@ -42,6 +45,10 @@ export class HomeComponent implements OnInit {
         this.categories = this.products.map(element => element.category);
         this.categories = [...new Set(this.categories)];
     }); 
+
+    this.authService.loggedInChanged.subscribe(loggedInFromSubject => {
+      this.loggedIn = loggedInFromSubject;
+    });
   }
 
   // EI SAA [(ngModel)] kirjutada div sisse
