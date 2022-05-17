@@ -17,10 +17,8 @@ export class ViewProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProductsFromDb().subscribe(response => { 
-        for (const key in response) {
-          this.products.push(response[key]);
-          this.originalProducts.push(response[key]);
-        }
+        this.products = response;
+        this.originalProducts = response;
     }); 
   }
 

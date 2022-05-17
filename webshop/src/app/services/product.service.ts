@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -13,7 +13,15 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProductsFromDb() {
-    return this.http.get<Product[]>(this.dbUrl);
+    return this.http.get<Product[]>(this.dbUrl).pipe(
+      map(productsFromDb => {
+        const newArray = [];
+        for (const key in productsFromDb) {
+          newArray.push(productsFromDb[key]);
+        }
+        return newArray;
+      })
+    );
   }
 
   addProductToDb(newProduct: Product) {

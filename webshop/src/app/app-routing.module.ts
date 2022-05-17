@@ -9,17 +9,27 @@ import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { ShopsComponent } from './shops/shops.component';
 import { ShopsSettingsComponent } from './admin/shops-settings/shops-settings.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "ostukorv", component: CartComponent },
   { path: "poed", component: ShopsComponent },
-  { path: "admin", component: AdminHomeComponent },
-  { path: "admin/lisa", component: AddProductComponent },
-  { path: "admin/muuda/:productId", component: EditProductComponent },
-  { path: "admin/halda", component: ViewProductsComponent },
-  { path: "admin/kategooriad", component: CategoryComponent },
-  { path: "admin/poodide-seaded", component: ShopsSettingsComponent },
+  { path: "logi-sisse", component: LoginComponent },
+  { path: "registreeru", component: SignupComponent },
+
+  { path: "admin", canActivateChild: [AuthGuard], children: [
+    { path: "", component: AdminHomeComponent },
+    { path: "lisa", component: AddProductComponent },
+    { path: "muuda/:productId", component: EditProductComponent },
+    { path: "halda", component: ViewProductsComponent },
+    { path: "kategooriad", component: CategoryComponent },
+    { path: "poodide-seaded", component: ShopsSettingsComponent },
+  ] },
+
+  
 ];
 
 @NgModule({
@@ -27,3 +37,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+// guard - saan aktiveerida mingeid URLe
+// seda kasutatakse vaid app-routingu sees

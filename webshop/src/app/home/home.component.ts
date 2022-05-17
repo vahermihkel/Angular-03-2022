@@ -36,19 +36,9 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getProductsFromDb().subscribe(response => {   // .subscribe lubab edasi minna
-        //  {-asdasd: {1}, -aqeqe, {2}}      [{1},{2}]   ---> forin tsükkel   (teeb objekti sees tsükli)
-                    // const toode = {nimi: "Coca cola", hind: 3, kategooria: "coca", aktiivne: true}
-                    // const newArray = [];
-                    // for (const key in toode)    1. nimi   2. hind    3. kategooria    4. aktiivne
-                    //   toode[key]    1. "Coca cola"   2. 3   3. "coca"   4. true
-                    // forin sees:    newArray.push(toode[key])     ->    ["Coca cola", 3, "coca", true];
-        // const newArray = [];
-        for (const key in response) {
-          this.products.push(response[key]);
-          this.originalProducts.push(response[key]);
-        }
-        // this.products = newArray;
+    this.productService.getProductsFromDb().subscribe(response => { 
+        this.products = response;
+        this.originalProducts = response;
         this.categories = this.products.map(element => element.category);
         this.categories = [...new Set(this.categories)];
     }); 

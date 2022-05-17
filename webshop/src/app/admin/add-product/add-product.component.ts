@@ -32,9 +32,7 @@ export class AddProductComponent implements OnInit {
     });
 
     this.productService.getProductsFromDb().subscribe(response => { 
-      for (const key in response) {
-        this.products.push(response[key]);
-      }
+      this.products = response;
     }); 
   }
 
@@ -49,7 +47,7 @@ export class AddProductComponent implements OnInit {
 
   onSubmit(addProductForm: NgForm) {
     // this.http.post(this.dbUrl, addProductForm.value).subscribe();
-    this.productService.addProductToDb(addProductForm.value);
+    this.productService.addProductToDb(addProductForm.value).subscribe();
     addProductForm.reset();
   }
 }
