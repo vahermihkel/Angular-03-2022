@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
 import { CategoryService } from 'src/app/services/category.service';
+import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -14,11 +14,12 @@ export class AddProductComponent implements OnInit {
   productId!: number;
   products: Product[] = [];
   idUnique = false;
-
   categories: {categoryName: string}[] = [];
+  selectedFile!: File;
 
   constructor(private productService: ProductService,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService,
+    private imageUploadService: ImageUploadService) { }
 
   // KUI LÄHEN LEHELE, vahetult enne HTMLi pannakse käima ngOnInit
   // LEHELE MINNES TAHAN NÄHA KÕIKI KATEGOORIAID
@@ -45,9 +46,26 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  handleFileInput(event: any) {
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  sendPictureToDb() {
+    this.imageUploadService.uploadPicture(this.selectedFile);
+  }
+
   onSubmit(addProductForm: NgForm) {
     // this.http.post(this.dbUrl, addProductForm.value).subscribe();
-    this.productService.addProductToDb(addProductForm.value).subscribe();
+    const url = this.imageUploadService.uploadedPictureUrl;
+
+    const val = addProductForm.value;
+    const newProduct = new Product(val.id,val.name, url, val.price, val.category,
+      val.description, val.isActive);
+
+    // const newProduct2 = {id: val.id, name: val.name, imgSrc: url, price: val.price,
+    // category: val.category, description: val.description, isActive: val.isActive }
+
+    this.productService.addProductToDb(newProduct).subscribe();
     addProductForm.reset();
   }
 }

@@ -30,6 +30,11 @@ export class ViewProductsComponent implements OnInit {
         );
   }
 
+  onChangeProductActive(product: Product) {
+    product.isActive = !product.isActive;
+    this.productService.updateProductsInDb(this.products).subscribe();
+  }
+
 }
 
 /* KODUS: 
