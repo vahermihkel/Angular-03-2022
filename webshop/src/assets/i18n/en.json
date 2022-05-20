@@ -1,5 +1,9 @@
 {
   "nav.admin-button": "To admin view",
   "nav.cart-button": "Cart",
-  "home.all-categories": "All categories"
+  "home.all-categories": "All categories",
+  "Edukalt ": "Successfully ",
+  " ostukorvi lisatud": " added to cart",
+  "Lisa ": "Add ",
+  " ostukorvi": " to cart"
 }

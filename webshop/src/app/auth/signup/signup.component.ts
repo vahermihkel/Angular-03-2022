@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private _toastService: ToastService
     ) { }
 
   ngOnInit(): void {
@@ -30,11 +32,13 @@ export class SignupComponent implements OnInit {
           this.error = "";
           this.isLoading = false;
           this.authService.loggedInChanged.next(true);
-          this.router.navigateByUrl("/admin");
+          // this.router.navigateByUrl("/admin");
+          this._toastService.success('Edukalt uus admin lisatud');
         },
         error: (error) => {
           this.error = error;
           this.isLoading = false;
+          this._toastService.error(error);
         }
       }
     );

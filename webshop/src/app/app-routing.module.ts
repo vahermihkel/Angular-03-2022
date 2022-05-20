@@ -12,6 +12,7 @@ import { ShopsSettingsComponent } from './admin/shops-settings/shops-settings.co
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
     { path: "halda", component: ViewProductsComponent },
     { path: "kategooriad", component: CategoryComponent },
     { path: "poodide-seaded", component: ShopsSettingsComponent },
+    { path: "karuselli-seaded", component: CarouselSettingsComponent },
   ] },
 
   

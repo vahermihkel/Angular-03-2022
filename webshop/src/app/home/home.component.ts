@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastService } from 'angular-toastify';
 import { AuthService } from '../auth/auth.service';
 import { CartProduct } from '../models/cart-product.model';
 import { Product } from '../models/product.model';
@@ -12,19 +14,14 @@ import { ProductService } from '../services/product.service';
 })
 export class HomeComponent implements OnInit {
   // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/300`);
-  images = [
-    "https://picsum.photos/id/312/900/300",
-    "https://picsum.photos/id/944/900/300",
-    "https://picsum.photos/id/1011/900/300",
-    "https://picsum.photos/id/931/900/300"
-  ];
+  images: any[] = [];
 
   // 1. *ngFor
   // 2. objektid {url: "https://", header: "", text: "", alt: ""}
   // 3. HTML-s src={{image.url}}
 
   products: Product[] = [];
-  dbUrl = "https://webshop-03-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  dbUrl = "https://webshop-03-22-default-rtdb.europe-west1.firebasedatabase.app/images.json";
   categories: string[] = [];
   selectedCategory = "";
   originalProducts: Product[] = [];
@@ -36,9 +33,21 @@ export class HomeComponent implements OnInit {
   // lause = "vitamin well without sugar";
 
   constructor(private productService: ProductService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private _toastService: ToastService,
+    private translateService: TranslateService,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get<{imgName: string}[]>(this.dbUrl).subscribe(imagesFromDb => {
+      const newArray = [];
+      for (const key in imagesFromDb) {
+        newArray.push(imagesFromDb[key]);
+      }
+      this.images = newArray;
+      console.log(this.images);
+    });
+
     this.productService.getProductsFromDb().subscribe(response => { 
         this.products = response;
         this.originalProducts = response;
@@ -101,6 +110,12 @@ export class HomeComponent implements OnInit {
 
     sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
     this.productService.cartChanged.next(true);
+    this._toastService.success(this.translateService.instant('Edukalt ') + 
+          productClicked.name + 
+          this.translateService.instant(' ostukorvi lisatud'));
+    // this._toastService.success('Edukalt ' + productClicked.name + ' ostukorvi lisatud');
+    // this._toastService.success(`Edukalt ${productClicked.name} ostukorvi lisatud`);
+
   }
 
   onSortAZ() {

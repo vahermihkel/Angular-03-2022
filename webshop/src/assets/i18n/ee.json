@@ -1,5 +1,9 @@
 {
   "nav.admin-button": "Administraatori vaatesse",
   "nav.cart-button": "Ostukorv",
-  "home.all-categories": "Kõik kategooriad"
+  "home.all-categories": "Kõik kategooriad",
+  "Edukalt ": "Edukalt ",
+  " ostukorvi lisatud": " ostukorvi lisatud",
+  "Lisa ": "Lisa ",
+  " ostukorvi": " ostukorvi"
 }

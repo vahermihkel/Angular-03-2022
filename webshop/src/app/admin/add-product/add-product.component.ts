@@ -60,10 +60,10 @@ export class AddProductComponent implements OnInit {
 
     const val = addProductForm.value;
     const newProduct = new Product(val.id,val.name, url, val.price, val.category,
-      val.description, val.isActive);
+      val.description, val.active);
 
     // const newProduct2 = {id: val.id, name: val.name, imgSrc: url, price: val.price,
-    // category: val.category, description: val.description, isActive: val.isActive }
+    // category: val.category, description: val.description, isActive: val.active }
 
     this.productService.addProductToDb(newProduct).subscribe();
     addProductForm.reset();
