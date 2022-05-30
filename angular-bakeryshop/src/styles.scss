@@ -7,3 +7,7 @@ body {
 /*TODO: Set the font weight of the first table column to bold*/
 // 3.a guugeldage kuidas tabelis esimene veerg boldis panna
 // products / employees tabelis mõlemas läheb kõige vasakpoolsem tumedaks
+
+td:first-child {
+  font-weight: bold
+}

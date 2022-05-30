@@ -13,7 +13,7 @@
     <tr *ngFor="let product of products">
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>
-      <td>{{product.quantity}}</td> <!-- TODO: Display the quantity in red if it is lower than 3 -->
+      <td [ngClass]="{'low-quantity': product.quantity < 3}">{{product.quantity}}</td> <!-- TODO: Display the quantity in red if it is lower than 3 -->
       <!-- [ngClass]    ---- Webshopis tegime: .active{border: 1px solid red} 
         {color: red} -->
       <td>{{product.store}}</td>
