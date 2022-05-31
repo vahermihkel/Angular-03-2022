@@ -1,64 +1,15 @@
-<ngb-carousel class="carousel-wrapper" *ngIf="images">
-    <ng-template *ngFor="let image of images" ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img src="{{image.imgName}}" alt="Random first slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>{{image.header}}</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
+<app-carousel-gallery></app-carousel-gallery>
 
+<app-filter-bar
+  *ngIf="products.length > 0"
+  [products]="products"
+  [originalProducts]="originalProducts"
+></app-filter-bar>
 
+<app-sort-buttons [productsToBeSorted]="products"></app-sort-buttons>
 
-<!-- <button class="btn btn-primary">SININE</button>
-<button class="btn btn-success">ROHELINE</button>
-<button class="btn btn-danger">PUNANE</button>
-<button class="btn btn-warning">KOLLANE</button>
-<button class="btn btn-secondary">HALL</button> -->
-
-
-<!-- <div>{{ kuup2ev | date }}</div>
-<div>{{ protsent | percent }}</div>
-<div>{{ rahayhik | currency }}</div>
-<div>{{ lause | uppercase | translate }}</div>  -->
-<!--tõlkevõti: "vitamin well without sugar"
-VITAMIN WELL WITHOUT SUGAR -->
-<!-- <div><b>{{ lause | titlecase }}</b></div>
-
-<div>{{ protsent * 100 + "%" }}</div>
-<div>{{ kuup2ev | date:'shortTime' }}</div>
-<div>{{ kuup2ev | date:'mediumTime' }}</div>
-<div>{{ kuup2ev | date:'fullTime' }}</div>
-<div>{{ kuup2ev | date:'fullDate' }}</div>
-<div>{{ rahayhik | currency:"EUR" }}</div> -->
-
-<!-- 1.  | translate
-    2.  | uppercase - lowercase - titlecase
-    3.  | date -->
-
-<div (click)="onFilterByCategory('')"
-  [ngClass]="{'category-selected': '' === selectedCategory}">{{"home.all-categories" | translate}}</div>
-
-<div *ngFor="let category of categories"
-  (click)="onFilterByCategory(category)"
-  [ngClass]="{'category-selected': category === selectedCategory}"
-  >{{ category }}</div>
-
-<button (click)="onSortAZ()">Sorteeri A-Z</button>
-<button (click)="onSortZA()">Sorteeri Z-A</button>
-<button (click)="onSortPriceAsc()">Sorteeri hind kasvavalt</button>
-<button (click)="onSortPriceDesc()">Sorteeri hind kahanevalt</button>
-
-<div *ngFor="let product of products">
-    <div [ngClass]="{'active': product.isActive && loggedIn, 'inactive': !product.isActive && loggedIn}" 
-        *ngIf="product.isActive === true || loggedIn === true">
-      <img src="{{product.imgSrc}}" alt="">
-      <div>{{product.name}}</div>
-      <div>{{product.price | thousandSeparator }}</div>
-      <button (click)="onAddToCart(product)">{{'Lisa ' | translate}} {{product.name}} {{" ostukorvi" | translate}}</button>
-    </div>
+<div *ngFor="let p of products">
+    <app-product-card [product]="p"></app-product-card>
 </div>
 
 <lib-toastify-toast-container

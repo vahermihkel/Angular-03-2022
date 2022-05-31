@@ -14,10 +14,6 @@
 </a>
 <br>
 
-<button (click)="onSendEmail()">Saada meile e-mail</button>
+<app-send-email></app-send-email>
 
-<div class="map-container">
-  <div class="map-frame">
-    <div id="map"></div>
-  </div>
-</div>
+<app-map [shops]="shops"></app-map>

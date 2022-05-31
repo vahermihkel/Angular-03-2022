@@ -25,6 +25,14 @@ import { ShopsSettingsComponent } from './admin/shops-settings/shops-settings.co
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
+import { CarouselGalleryComponent } from './home/carousel-gallery/carousel-gallery.component';
+import { SortButtonsComponent } from './home/sort-buttons/sort-buttons.component';
+import { ParcelMachinesComponent } from './cart/parcel-machines/parcel-machines.component';
+import { FilterBarComponent } from './home/filter-bar/filter-bar.component';
+import { ProductCardComponent } from './home/product-card/product-card.component';
+import { CartProductComponent } from './cart/cart-product/cart-product.component';
+import { SendEmailComponent } from './shops/send-email/send-email.component';
+import { MapComponent } from './shops/map/map.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +51,15 @@ import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-se
     ShopsSettingsComponent,
     LoginComponent,
     SignupComponent,
-    CarouselSettingsComponent
+    CarouselSettingsComponent,
+    CarouselGalleryComponent,
+    SortButtonsComponent,
+    ParcelMachinesComponent,
+    FilterBarComponent,
+    ProductCardComponent,
+    CartProductComponent,
+    SendEmailComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

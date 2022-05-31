@@ -1,0 +1,7 @@
+<div (click)="onFilterByCategory('')"
+  [ngClass]="{'category-selected': '' === selectedCategory}">{{"home.all-categories" | translate}}</div>
+
+<div *ngFor="let category of categories"
+  (click)="onFilterByCategory(category)"
+  [ngClass]="{'category-selected': category === selectedCategory}"
+  >{{ category }}</div>

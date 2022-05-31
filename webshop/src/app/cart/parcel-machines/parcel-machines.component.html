@@ -1,0 +1,14 @@
+<!-- [(ngModel)] ---- seob otse .ts muutujaga mida valiti ära -->
+<select 
+    [(ngModel)]="selectedParcelMachine" 
+    (ngModelChange)="onParcelMachineSelected()"
+    *ngIf="!selectedParcelMachine && cartProducts.length > 0"
+    >
+    <option value="">Vali pakiautomaat</option>
+    <option *ngFor="let machine of parcelMachines">{{machine.NAME}}</option>
+</select>
+
+<div *ngIf="selectedParcelMachine">
+    <div>Valitud pakiautomaat: {{ selectedParcelMachine }}</div>
+    <button (click)="onUnselectParcelMachine()">X</button>
+</div>
