@@ -23,16 +23,21 @@
         </option>
     </select> <br>
     <label>Kirjeldus</label> <br>
-    <input ngModel name="description" type="text" required> <br>
+    <textarea extendInput ngModel name="description" type="text" required></textarea>        <br>
     <label>Pilt</label> <br>
     <!-- <input ngModel name="imgSrc" type="text" required> <br> -->
     <input ngModel name="imgSrc" (change)="handleFileInput($event)" type="file">
     <button type="button" *ngIf="this.selectedFile" (click)="sendPictureToDb()">Saada pilt andmebaasi</button>
     <br>
     <label>Aktiivne</label> <br>
-    <input ngModel name="active" type="checkbox"> <br>
+    <div class="line"></div>
+    <label class="active-circle" [@productActive]="isActive ? 'active' : 'inactive'">
+        <input class="active-checkbox" ngModel name="active" type="checkbox" (click)="toggle()"> <br>
+    </label>
+    <br>
     <button [disabled]="addProductForm.invalid || !idUnique">SISESTA</button>
 </form>
+<br>br
 
 <!-- ngModel name="" --- mis seob #minuVorm="ngForm" minuVorm vormiga
 [(ngModel)]="" -->

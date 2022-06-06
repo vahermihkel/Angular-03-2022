@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
@@ -8,7 +9,21 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  styleUrls: ['./add-product.component.css'],
+  animations: [
+    trigger('productActive', [
+      state('inactive', style({
+        backgroundColor: 'red'
+      })),
+      state('active', style({
+        transform: 'translateX(50px)',
+        backgroundColor: 'green'
+      })),
+      transition('inactive <=> active', [
+        animate('1s')
+      ])
+    ]),
+  ],
 })
 export class AddProductComponent implements OnInit {
   productId!: number;
@@ -16,6 +31,12 @@ export class AddProductComponent implements OnInit {
   idUnique = false;
   categories: {categoryName: string}[] = [];
   selectedFile!: File;
+  
+  isActive = false;
+
+  toggle() {
+    this.isActive = !this.isActive;
+  }
 
   constructor(private productService: ProductService,
     private categoryService: CategoryService,

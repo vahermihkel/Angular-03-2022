@@ -23,7 +23,7 @@
 <tr *ngFor="let product of products" [ngClass]="{'active': product.isActive, 'inactive': !product.isActive}">
     <td (click)="onChangeProductActive(product)"><img class="product-img" src="{{product.imgSrc}}" alt=""></td>
     <td (click)="onChangeProductActive(product)">{{product.name}}</td>
-    <td (click)="onChangeProductActive(product)">{{product.price}}</td>
+    <td (click)="onChangeProductActive(product)">{{product.price | thousandSeparator}}</td>
     <td (click)="onChangeProductActive(product)">{{product.category}}</td>
     <td (click)="onChangeProductActive(product)">{{product.description | descriptionShortener:descriptionWordCount}}</td>
   <button routerLink="/admin/muuda/{{product.id}}">Muuda toodet</button>
